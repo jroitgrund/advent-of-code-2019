@@ -4,3 +4,20 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
+
+plugins {
+    kotlin("jvm") version "1.3.61"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("reflect"))
+    implementation("com.google.guava:guava:28.1-jre")
+    testImplementation(kotlin("test"))
+    testImplementation(kotlin("test-junit"))
+}
