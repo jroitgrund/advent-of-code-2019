@@ -1,31 +1,31 @@
 package day1
 
 import com.google.common.io.CharSource
-import common.getInput
+import common.Solution
+import common.printSolutions
 import kotlin.streams.asSequence
 
 fun main() {
-    val input = getInput(object {}.javaClass);
-
-    println(part1(input));
-    println(part2(input));
+    printSolutions(object {}.javaClass, Day1Solution)
 }
 
-private fun part1(input: CharSource): Int {
-    return input.lines()
-            .asSequence()
-            .map(String::toInt)
-            .map { it / 3 - 2 }
-            .sum();
-}
+object Day1Solution: Solution {
+     override fun part1(input: CharSource): Int {
+        return input.lines()
+                .asSequence()
+                .map(String::toInt)
+                .map { it / 3 - 2 }
+                .sum();
+    }
 
-private fun part2(input: CharSource): Int {
-    return input.lines()
-            .asSequence()
-            .map(String::toInt)
-            .map { it / 3 - 2 }
-            .map(::getTotalFuel)
-            .sum();
+     override fun part2(input: CharSource): Int {
+        return input.lines()
+                .asSequence()
+                .map(String::toInt)
+                .map { it / 3 - 2 }
+                .map(::getTotalFuel)
+                .sum();
+    }
 }
 
 private fun getTotalFuel(initialFuel: Int): Int {

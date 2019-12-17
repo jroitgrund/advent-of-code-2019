@@ -1,41 +1,42 @@
 package day2
 
 import com.google.common.io.CharSource
-import common.getInput
+import common.Solution
+import common.printSolutions
 
-const val HALT = 99;
-const val ADD = 1;
-const val MULT = 2;
+private const val HALT = 99;
+private const val ADD = 1;
+private const val MULT = 2;
 
 fun main() {
-    val input = getInput(object {}.javaClass);
-
-    println(part1(input));
-    println(part2(input));
+    printSolutions(object {}.javaClass, Day2Solution)
 }
 
-private fun part1(input: CharSource): Int {
-    val initialState = initialState(input)
-    return runProgram(initialState, 12, 2)
-}
+object Day2Solution: Solution {
 
-private fun part2(input: CharSource): Int {
-    val initialState = initialState(input)
+    override fun part1(input: CharSource): Int {
+        val initialState = initialState(input)
+        return runProgram(initialState, 12, 2)
+    }
 
-    val nounVerbPairs = generateSequence((0 to 0), { (a, b) ->
-        when {
-            b < 99 -> (a to b + 1)
-            else -> (a + 1 to 0)
-        }
-    })
+    override fun part2(input: CharSource): Int {
+        val initialState = initialState(input)
 
-    val (noun, verb) = nounVerbPairs
-            .takeWhile { (a, b) -> a <= 99 }
-            .find { (a, b) ->
-                runProgram(initialState, a, b) == 19690720
-            }!!
+        val nounVerbPairs = generateSequence((0 to 0), { (a, b) ->
+            when {
+                b < 99 -> (a to b + 1)
+                else -> (a + 1 to 0)
+            }
+        })
 
-    return 100 * noun + verb;
+        val (noun, verb) = nounVerbPairs
+                .takeWhile { (a, b) -> a <= 99 }
+                .find { (a, b) ->
+                    runProgram(initialState, a, b) == 19690720
+                }!!
+
+        return 100 * noun + verb;
+    }
 }
 
 private fun initialState(input: CharSource): List<Int> {
