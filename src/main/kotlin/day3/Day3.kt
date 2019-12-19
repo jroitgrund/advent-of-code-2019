@@ -59,7 +59,6 @@ object Day3Solution : Solution {
                 .sorted()
                 .first()!!
     }
-
 }
 
 private fun intersections(input: CharSource): Sequence<PointWithCost> {
